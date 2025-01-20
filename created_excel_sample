@@ -1,0 +1,29 @@
+import openpyxl as op
+from datetime import datetime as dt, timedelta
+import os
+
+# now = dt.now()
+now = dt(2024,2,2)
+yesterday = now - timedelta(days=1)
+
+fn = "test_xl.xlsx"
+if not os.path.exists(fn):  # 연초 1월 1일 생성 조건
+    wb = op.Workbook()
+    wb.active.title = f"{yesterday.month}월"
+    ws = wb.active
+
+else:
+    print(f"{yesterday.month}월")
+    wb = op.load_workbook(fn)
+
+    slist = wb.sheetnames
+    if not f"{yesterday.month}월" in slist:
+        wb.create_sheet(f"{yesterday.month}월")
+    ws = wb[f"{yesterday.month}월"]
+
+    ws["A1"] = "날짜"
+    ws["B1"] = "수집 여부"
+    ws["C1"] = "이미지 정상 여부"
+
+
+wb.save(fn)
