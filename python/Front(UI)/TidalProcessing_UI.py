@@ -8,6 +8,7 @@ from datetime import datetime as dt, timedelta
 
 class TideProcessingApp(QWidget):
     """
+    회사에서 사용할 프로그램(자료 다운로드 및 포맷에 맞춰 파일 재처리)
     바다 해양누리집 자료 처리 프로그램 UI
     """
     def __init__(self):
